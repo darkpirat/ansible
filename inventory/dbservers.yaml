@@ -1,0 +1,7 @@
+---
+dbservers:
+  hosts:
+    db1:
+    db2:
+  vars:
+    ansible_user: ubuntu

@@ -1,0 +1,12 @@
+<html>
+    <head>
+        <title>Machine {{inventory_hostname}}</title>
+    </head>
+    <body>
+        <p>Cette machine s'appelle {{inventory_hostname}}</p>
+        <p>Architecture: {{ansible_architecture}}</p>
+        <p>Distribution: {{ansible_distribution}}</p>
+        <p>Release: {{ansible_distribution_version}}</p>
+        <p>Network int: {{ansible_default_ipv4.interface}}</p>
+    </body>
+</html>

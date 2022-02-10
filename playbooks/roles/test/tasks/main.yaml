@@ -1,0 +1,10 @@
+- name: Ajout fichier dans /tmp
+  file:
+    path: /tmp/fichier_role_test.txt
+    state: touch
+
+- name: Install mlocate
+  package:
+    name:
+      - mlocate
+    state: latest

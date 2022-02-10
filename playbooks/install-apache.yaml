@@ -1,0 +1,43 @@
+---
+- name: play 1
+  hosts: webservers
+  become: true
+  tasks:
+    - name: Installation du paquet httpd et demarrage du service
+      block:
+        - name: Installation du paquet httpd
+          yum:
+            name:
+              - httpd
+            state: latest
+            update_cache: yes
+        - name: Activation service httpd
+          systemd:
+            state: started
+            name: httpd
+            enabled: yes
+        - name: Ajout de la page perso
+          template:
+            src: /home/ubuntu/projets/ansible/templates/machine.html.j2
+            dest: /var/www/html/index.html
+            owner: root
+            group: root
+            mode: '0644'
+      when: ansible_facts['distribution'] == 'CentOS'
+    - name: Installation du paquet apache2 sur Ubuntu
+      block:
+        - name: Installation du paquet apache2
+          apt:
+            name:
+              - apache2
+            state: latest
+            update_cache: yes
+        - name: Ajout de la page perso
+          template:
+            src: /home/ubuntu/projets/ansible/templates/machine.html.j2
+            dest: /var/www/html/index.html
+            owner: root
+            group: root
+            mode: '0644'
+      when: ansible_facts['distribution'] == 'Ubuntu'
+    

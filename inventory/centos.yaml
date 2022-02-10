@@ -1,0 +1,6 @@
+---
+centos:
+  hosts:
+    web2:  
+  vars:
+    ansible_user: centos
